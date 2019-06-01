@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        标题：<input type="text" v-model='title'><br>
+        作者：<input type="text" v-model='author'><br>
+        <textarea cols="30" rows="10" v-model='content'></textarea><br>
+        <button v-on:click='submit'>提交</button>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                title: '',
+                author: '',
+                content: '',
+            },
+            methods: {
+                submit: function () {
+                    console.log(this.title);
+                    console.log(this.author);
+                    console.log(this.content);
+                    axios.get('/getArticle',
+                        // {
+                        //     title: this.title,
+                        //     author: this.author,
+                        //     content: this.content,
+                        // }
+                    )
+                        .then(
+                            function (response) {
+                                console.log(response);
+                            }
+                        )
+
+                }
+
+            }
+        })
+    </script>
+    </div>
+</body>
+
+</html>
